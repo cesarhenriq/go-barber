@@ -1,11 +1,19 @@
 import { Router } from 'express';
 
+import AuthMiddleware from './app/middlewares/auth';
+
 import UserController from './app/controllers/UserController';
+import SessionController from './app/controllers/SessionController';
 
 const routes = new Router();
 
+routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store);
+
+routes.use(AuthMiddleware);
+
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-routes.post('/users', UserController.create);
+routes.put('/users', UserController.update);
 
 export default routes;
