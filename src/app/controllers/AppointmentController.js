@@ -95,6 +95,10 @@ class AppointmentController {
       "'dia' dd 'de' MMMM',' 'ás' H:mm'h'",
       { locale: pt }
     );
+
+    /**
+     * Notify appointment provider
+     */
     await Notification.create({
       content: `Novo agendamento de ${user.name} para o ${formattedDate}`,
       user: req.userId,
